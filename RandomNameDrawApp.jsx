@@ -1,23 +1,22 @@
 import React, { useState, useRef, useEffect } from "react";
 
-// BACKGROUND OPTIONS - update to match your files
+// Reference images according to your corrected spelling and structure
 const backgrounds = [
   { label: "Blank", value: "" },
-  { label: "20 Beaches", value: "backgrounds/20beaches_background.jpg" },
-  { label: "Chucky", value: "backgrounds/chucky.png" },
-  { label: "Racone", value: "backgrounds/racone_backgound.png" },
-  { label: "Sss", value: "backgrounds/sss_backgound.png" },
-  { label: "Warw", value: "backgrounds/warw_backgound.png" },
+  { label: "20 Beaches", value: "backgrounds/20beaches_background.png" },
+  { label: "Chucky", value: "backgrounds/chucky_background.png" },
+  { label: "Raceone", value: "backgrounds/raceone_background.png" },
+  { label: "Sss", value: "backgrounds/sss_background.png" },
+  { label: "Warw", value: "backgrounds/warw_background.png" }
 ];
 
-// BANNER OPTIONS - update to match your files
 const banners = [
   { label: "Blank", value: "" },
   { label: "20 Beaches", value: "banner/20beaches_banner.png" },
   { label: "Chucky", value: "banner/chucky_banner.png" },
-  { label: "Racone", value: "banner/racone_banner.png" },
+  { label: "Raceone", value: "banner/raceone_banner.png" },
   { label: "Sss", value: "banner/sss_banner.png" },
-  { label: "Warw", value: "banner/warw_banner.png" },
+  { label: "Warw", value: "banner/warw_banner.png" }
 ];
 
 const countdownOptions = [3, 5, 10, 20];
@@ -54,7 +53,6 @@ export default function RandomNameDrawApp() {
     saveWinners(winners);
   }, [winners]);
 
-  // Parse names input
   useEffect(() => {
     const arr = namesRaw
       .split("\n")
@@ -72,10 +70,7 @@ export default function RandomNameDrawApp() {
       setTimer((t) => {
         if (t <= 1) {
           clearInterval(countdownInterval);
-          // Exclude previous winners
-          const available = names.filter(
-            (n) => !winners.includes(n)
-          );
+          const available = names.filter((n) => !winners.includes(n));
           let pick = available.length
             ? available[Math.floor(Math.random() * available.length)]
             : names[Math.floor(Math.random() * names.length)];
@@ -91,7 +86,6 @@ export default function RandomNameDrawApp() {
 
   function handleRedraw() {
     if (names.length === 0) return;
-    // Exclude last winner
     const exclude = winner ? [...winners, winner] : winners;
     const available = names.filter((n) => !exclude.includes(n));
     if (available.length === 0) return;
@@ -139,12 +133,13 @@ export default function RandomNameDrawApp() {
     URL.revokeObjectURL(url);
   }
 
-  // Background style
+  // Bulletproof background style logic
   let bgStyle = {};
   if (bg) {
     if (bg.endsWith(".jpg") || bg.endsWith(".png")) {
-      bgStyle.backgroundImage = `url(${bg})`;
+      bgStyle.backgroundImage = `url(${process.env.PUBLIC_URL + "/" + bg})`;
       bgStyle.backgroundSize = "cover";
+      bgStyle.backgroundPosition = "center";
     } else {
       bgStyle.background = bg;
     }
@@ -246,7 +241,12 @@ export default function RandomNameDrawApp() {
       <div className="rnd-display">
         {banner && (
           banner.endsWith(".png") || banner.endsWith(".jpg") ?
-            <img className="rnd-banner" src={banner} alt="Banner" style={{maxWidth: "100%", maxHeight: 80}} />
+            <img
+              className="rnd-banner"
+              src={process.env.PUBLIC_URL + "/" + banner}
+              alt="Banner"
+              style={{maxWidth: "100%", maxHeight: 80}}
+            />
             :
             <div className="rnd-banner">{banner}</div>
         )}
