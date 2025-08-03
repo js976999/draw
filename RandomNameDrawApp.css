@@ -1,0 +1,89 @@
+.rnd-app {
+  font-family: sans-serif;
+  min-height: 100vh;
+  padding: 36px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rnd-controls {
+  background: rgba(255,255,255,0.96);
+  padding: 18px 24px 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 16px #0001;
+  margin-bottom: 28px;
+  min-width: 340px;
+  max-width: 96vw;
+}
+
+.rnd-controls textarea {
+  width: 98%;
+  margin-top: 6px;
+  margin-bottom: 8px;
+  resize: vertical;
+}
+
+.rnd-display {
+  background: rgba(255,255,255,0.89);
+  border-radius: 12px;
+  min-height: 120px;
+  width: 340px;
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.rnd-banner {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 10px 0 4px 0;
+  letter-spacing: 2px;
+  color: #333;
+  text-shadow: 0 2px 8px #fff4;
+}
+
+.rnd-countdown {
+  font-size: 2em;
+  color: #555;
+  margin: 24px 0;
+}
+
+.rnd-winner {
+  font-size: 2.3em;
+  font-weight: bold;
+  color: #207b3b;
+  margin: 20px 0;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.rnd-wait {
+  color: #aaa;
+  font-size: 1em;
+  margin: 24px 0;
+}
+
+.rnd-winners {
+  background: #fff9;
+  padding: 10px 20px;
+  border-radius: 8px;
+  min-width: 240px;
+  box-shadow: 0 2px 12px #0002;
+  margin-bottom: 38px;
+}
+
+.rnd-winners ol {
+  padding-left: 18px;
+  margin: 8px 0 0 0;
+}
+
+.rnd-winners button {
+  font-size: 0.9em;
+  padding: 2px 14px;
+  margin-top: 5px;
+}
