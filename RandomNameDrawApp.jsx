@@ -1,23 +1,26 @@
 import React, { useState, useRef, useEffect } from "react";
 
-// Preloaded backgrounds (as color names and local images, can extend easily)
+// BACKGROUND OPTIONS - update to match your files
 const backgrounds = [
   { label: "Blank", value: "" },
-  { label: "Blue", value: "#87ceeb" },
-  { label: "Green", value: "#90ee90" },
-  { label: "Party", value: "party.jpg" }, // assume party.jpg is in public/
+  { label: "20 Beaches", value: "backgrounds/20beaches_background.jpg" },
+  { label: "Chucky", value: "backgrounds/chucky.png" },
+  { label: "Racone", value: "backgrounds/racone_backgound.png" },
+  { label: "Sss", value: "backgrounds/sss_backgound.png" },
+  { label: "Warw", value: "backgrounds/warw_backgound.png" },
 ];
 
-// Preloaded banner titles
+// BANNER OPTIONS - update to match your files
 const banners = [
   { label: "Blank", value: "" },
-  { label: "Lucky Draw", value: "Lucky Draw" },
-  { label: "Winner of the Day", value: "Winner of the Day" },
-  { label: "Surprise!", value: "Surprise!" },
+  { label: "20 Beaches", value: "banner/20beaches_banner.png" },
+  { label: "Chucky", value: "banner/chucky_banner.png" },
+  { label: "Racone", value: "banner/racone_banner.png" },
+  { label: "Sss", value: "banner/sss_banner.png" },
+  { label: "Warw", value: "banner/warw_banner.png" },
 ];
 
 const countdownOptions = [3, 5, 10, 20];
-
 const WINNERS_KEY = "random-draw-winners";
 
 function readWinners() {
@@ -140,7 +143,7 @@ export default function RandomNameDrawApp() {
   let bgStyle = {};
   if (bg) {
     if (bg.endsWith(".jpg") || bg.endsWith(".png")) {
-      bgStyle.backgroundImage = `url(${process.env.PUBLIC_URL || ""}/${bg})`;
+      bgStyle.backgroundImage = `url(${bg})`;
       bgStyle.backgroundSize = "cover";
     } else {
       bgStyle.background = bg;
@@ -241,7 +244,12 @@ export default function RandomNameDrawApp() {
       </div>
 
       <div className="rnd-display">
-        {banner && <div className="rnd-banner">{banner}</div>}
+        {banner && (
+          banner.endsWith(".png") || banner.endsWith(".jpg") ?
+            <img className="rnd-banner" src={banner} alt="Banner" style={{maxWidth: "100%", maxHeight: 80}} />
+            :
+            <div className="rnd-banner">{banner}</div>
+        )}
         {isDrawing ? (
           <div className="rnd-countdown">Drawing in... {timer}</div>
         ) : winner ? (
