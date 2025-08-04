@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 
-// Reference images according to your corrected spelling and structure
+// Update these arrays if you add/remove images in public/backgrounds or public/banner
 const backgrounds = [
   { label: "Blank", value: "" },
   { label: "20 Beaches", value: "backgrounds/20beaches_background.png" },
