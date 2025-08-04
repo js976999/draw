@@ -1,89 +1,88 @@
 .rnd-app {
-  font-family: sans-serif;
   min-height: 100vh;
-  padding: 36px 0 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .rnd-controls {
-  background: rgba(255,255,255,0.96);
-  padding: 18px 24px 16px 24px;
-  border-radius: 8px;
-  box-shadow: 0 2px 16px #0001;
-  margin-bottom: 28px;
-  min-width: 340px;
-  max-width: 96vw;
+  background: rgba(255,255,255,0.93);
+  max-width: 420px;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 24px 20px 12px 20px;
+  margin-top: 18px;
+  box-shadow: 0 0 12px #aaa4;
+}
+
+.rnd-controls h2 {
+  text-align: center;
+  margin-top: 0;
 }
 
 .rnd-controls textarea {
-  width: 98%;
-  margin-top: 6px;
-  margin-bottom: 8px;
-  resize: vertical;
+  width: 100%;
+  margin-top: 2px;
+  font-size: 1em;
+  border-radius: 5px;
+  padding: 4px;
+  border: 1px solid #aaa;
+}
+
+.rnd-controls input[type="file"] {
+  margin-left: 8px;
 }
 
 .rnd-display {
-  background: rgba(255,255,255,0.89);
-  border-radius: 12px;
+  text-align: center;
+  margin-top: 34px;
   min-height: 120px;
-  width: 340px;
-  margin-bottom: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .rnd-banner {
-  font-size: 1.3em;
-  font-weight: bold;
-  margin: 10px 0 4px 0;
-  letter-spacing: 2px;
-  color: #333;
-  text-shadow: 0 2px 8px #fff4;
-}
-
-.rnd-countdown {
-  font-size: 2em;
-  color: #555;
-  margin: 24px 0;
+  margin-bottom: 18px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .rnd-winner {
+  font-size: 2.1em;
+  font-weight: bold;
+  color: #1b3e2a;
+  background: #fffbe0e0;
+  padding: 16px 0 8px 0;
+  border-radius: 14px;
+  margin-top: 0px;
+  box-shadow: 0 2px 8px #aaa5;
+}
+
+.rnd-countdown {
   font-size: 2.3em;
   font-weight: bold;
-  color: #207b3b;
-  margin: 20px 0;
-  letter-spacing: 2px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
+  color: #0c2238;
+  background: #d8efffdd;
+  display: inline-block;
+  padding: 18px 36px;
+  border-radius: 12px;
+  margin-top: 8px;
 }
 
 .rnd-wait {
-  color: #aaa;
-  font-size: 1em;
-  margin: 24px 0;
+  font-size: 1.5em;
+  color: #333;
+  margin-top: 32px;
 }
 
 .rnd-winners {
-  background: #fff9;
-  padding: 10px 20px;
-  border-radius: 8px;
-  min-width: 240px;
-  box-shadow: 0 2px 12px #0002;
-  margin-bottom: 38px;
+  background: rgba(255,255,255,0.93);
+  max-width: 420px;
+  margin: 32px auto 0 auto;
+  border-radius: 10px;
+  padding: 14px 20px 12px 20px;
+  box-shadow: 0 0 10px #aaa5;
 }
 
 .rnd-winners ol {
-  padding-left: 18px;
-  margin: 8px 0 0 0;
-}
-
-.rnd-winners button {
-  font-size: 0.9em;
-  padding: 2px 14px;
-  margin-top: 5px;
+  margin: 0 0 8px 16px;
+  padding: 0;
 }
