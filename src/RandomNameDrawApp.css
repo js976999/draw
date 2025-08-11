@@ -1,88 +1,21 @@
-.rnd-app {
-  min-height: 100vh;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.rnd-controls {
-  background: rgba(255,255,255,0.93);
-  max-width: 420px;
-  margin: 0 auto;
-  border-radius: 10px;
-  padding: 24px 20px 12px 20px;
-  margin-top: 18px;
-  box-shadow: 0 0 12px #aaa4;
-}
-
-.rnd-controls h2 {
-  text-align: center;
-  margin-top: 0;
-}
-
-.rnd-controls textarea {
-  width: 100%;
-  margin-top: 2px;
-  font-size: 1em;
-  border-radius: 5px;
-  padding: 4px;
-  border: 1px solid #aaa;
-}
-
-.rnd-controls input[type="file"] {
-  margin-left: 8px;
-}
-
-.rnd-display {
-  text-align: center;
-  margin-top: 34px;
-  min-height: 120px;
-}
-
-.rnd-banner {
-  margin-bottom: 18px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.rnd-winner {
-  font-size: 2.1em;
+.rnd-draw-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 5000;
+  background: #1b3e2a;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 18px 42px;
+  font-size: 1.3em;
   font-weight: bold;
-  color: #1b3e2a;
-  background: #fffbe0e0;
-  padding: 16px 0 8px 0;
-  border-radius: 14px;
-  margin-top: 0px;
-  box-shadow: 0 2px 8px #aaa5;
+  box-shadow: 0 4px 16px #2225;
+  cursor: pointer;
+  transition: background 0.18s;
 }
-
-.rnd-countdown {
-  font-size: 2.3em;
-  font-weight: bold;
-  color: #0c2238;
-  background: #d8efffdd;
-  display: inline-block;
-  padding: 18px 36px;
-  border-radius: 12px;
-  margin-top: 8px;
-}
-
-.rnd-wait {
-  font-size: 1.5em;
-  color: #333;
-  margin-top: 32px;
-}
-
-.rnd-winners {
-  background: rgba(255,255,255,0.93);
-  max-width: 420px;
-  margin: 32px auto 0 auto;
-  border-radius: 10px;
-  padding: 14px 20px 12px 20px;
-  box-shadow: 0 0 10px #aaa5;
-}
-
-.rnd-winners ol {
-  margin: 0 0 8px 16px;
-  padding: 0;
+.rnd-draw-fab:disabled {
+  background: #999;
+  cursor: not-allowed;
+  opacity: 0.5;
 }

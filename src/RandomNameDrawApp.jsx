@@ -43,6 +43,8 @@ export default function RandomNameDrawApp() {
   const [isDrawing, setIsDrawing] = useState(false);
   const [timer, setTimer] = useState(countdown);
   const [winners, setWinners] = useState(readWinners());
+  const [isReady, setIsReady] = useState(false); // NEW STATE
+  const [randomName, setRandomName] = useState(""); // For animation
   const namesInputRef = useRef();
 
   useEffect(() => {
@@ -61,55 +63,40 @@ export default function RandomNameDrawApp() {
     setNames(arr);
   }, [namesRaw]);
 
-  function handleDraw() {
-    if (names.length === 0) return;
-    setIsDrawing(true);
-    setTimer(countdown);
+  function handleReady() {
+    setIsReady(true);
     setWinner(null);
-    const countdownInterval = setInterval(() => {
-      setTimer((t) => {
-        if (t <= 1) {
-          clearInterval(countdownInterval);
-          const available = names.filter((n) => !winners.includes(n));
-          let pick = available.length
-            ? available[Math.floor(Math.random() * available.length)]
-            : names[Math.floor(Math.random() * names.length)];
-          setWinner(pick);
-          setWinners((w) => (pick && !w.includes(pick) ? [...w, pick] : w));
-          setIsDrawing(false);
-          return countdown;
-        }
-        return t - 1;
-      });
-    }, 1000);
+    setRandomName("");
   }
 
-  function handleRedraw() {
+  function handleDrawOrRedraw() {
     if (names.length === 0) return;
-    const exclude = winner ? [...winners, winner] : winners;
-    const available = names.filter((n) => !exclude.includes(n));
-    if (available.length === 0) return;
     setIsDrawing(true);
-    setTimer(countdown);
     setWinner(null);
-    const countdownInterval = setInterval(() => {
-      setTimer((t) => {
-        if (t <= 1) {
-          clearInterval(countdownInterval);
-          const pick =
-            available[Math.floor(Math.random() * available.length)];
-          setWinner(pick);
-          setWinners((w) => (pick && !w.includes(pick) ? [...w, pick] : w));
-          setIsDrawing(false);
-          return countdown;
-        }
-        return t - 1;
-      });
-    }, 1000);
+    setRandomName("");
+    // Animation: show random names for 2 seconds, then pick winner
+    let ticks = 0;
+    const maxTicks = 25;
+    const interval = setInterval(() => {
+      setRandomName(names[Math.floor(Math.random() * names.length)]);
+      ticks++;
+      if (ticks > maxTicks) {
+        clearInterval(interval);
+        const available = names.filter((n) => !winners.includes(n));
+        let pick = available.length
+          ? available[Math.floor(Math.random() * available.length)]
+          : names[Math.floor(Math.random() * names.length)];
+        setWinner(pick);
+        setWinners((w) => (pick && !w.includes(pick) ? [...w, pick] : w));
+        setIsDrawing(false);
+        setRandomName("");
+      }
+    }, 60);
   }
 
   function handleClearWinners() {
     setWinners([]);
+    setWinner(null);
   }
 
   function handleFileUpload(e) {
@@ -147,96 +134,85 @@ export default function RandomNameDrawApp() {
 
   return (
     <div className="rnd-app" style={bgStyle}>
-      <div className="rnd-controls">
-        <h2>Random Name Draw</h2>
-        <label>
-          Paste Names (one per line):
-          <textarea
-            ref={namesInputRef}
-            rows={6}
-            value={namesRaw}
-            onChange={(e) => setNamesRaw(e.target.value)}
-            disabled={isDrawing}
-            placeholder="Enter one name per line..."
-          />
-        </label>
-        <div>
-          <button onClick={downloadSample} style={{marginRight:8}}>Download Sample List</button>
-          <input
-            type="file"
-            accept=".txt"
-            style={{ display: "inline" }}
-            onChange={handleFileUpload}
-            disabled={isDrawing}
-          />
-        </div>
-        <div style={{marginTop:12}}>
+      {!isReady && (
+        <div className="rnd-controls">
+          <h2>Random Name Draw</h2>
           <label>
-            Countdown (seconds):{" "}
-            <select
-              value={countdown}
-              onChange={(e) => setCountdown(Number(e.target.value))}
+            Paste Names (one per line):
+            <textarea
+              ref={namesInputRef}
+              rows={6}
+              value={namesRaw}
+              onChange={(e) => setNamesRaw(e.target.value)}
               disabled={isDrawing}
-            >
-              {countdownOptions.map((n) => (
-                <option key={n} value={n}>
-                  {n}
-                </option>
-              ))}
-            </select>
+              placeholder="Enter one name per line..."
+            />
           </label>
-          <label style={{marginLeft:16}}>
-            Background:{" "}
-            <select
-              value={bg}
-              onChange={(e) => setBg(e.target.value)}
+          <div>
+            <button onClick={downloadSample} style={{marginRight:8}}>Download Sample List</button>
+            <input
+              type="file"
+              accept=".txt"
+              style={{ display: "inline" }}
+              onChange={handleFileUpload}
               disabled={isDrawing}
+            />
+          </div>
+          <div style={{marginTop:12}}>
+            <label>
+              Countdown (seconds):{" "}
+              <select
+                value={countdown}
+                onChange={(e) => setCountdown(Number(e.target.value))}
+                disabled={isDrawing}
+              >
+                {countdownOptions.map((n) => (
+                  <option key={n} value={n}>
+                    {n}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label style={{marginLeft:16}}>
+              Background:{" "}
+              <select
+                value={bg}
+                onChange={(e) => setBg(e.target.value)}
+                disabled={isDrawing}
+              >
+                {backgrounds.map((b) => (
+                  <option key={b.value} value={b.value}>
+                    {b.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label style={{marginLeft:16}}>
+              Banner:{" "}
+              <select
+                value={banner}
+                onChange={(e) => setBanner(e.target.value)}
+                disabled={isDrawing}
+              >
+                {banners.map((b) => (
+                  <option key={b.value} value={b.value}>
+                    {b.label}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div style={{marginTop:18}}>
+            <button
+              onClick={handleReady}
+              disabled={isDrawing || names.length === 0}
+              style={{ fontWeight: "bold", fontSize: "1.1em" }}
             >
-              {backgrounds.map((b) => (
-                <option key={b.value} value={b.value}>
-                  {b.label}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label style={{marginLeft:16}}>
-            Banner:{" "}
-            <select
-              value={banner}
-              onChange={(e) => setBanner(e.target.value)}
-              disabled={isDrawing}
-            >
-              {banners.map((b) => (
-                <option key={b.value} value={b.value}>
-                  {b.label}
-                </option>
-              ))}
-            </select>
-          </label>
+              Ready
+            </button>
+          </div>
         </div>
-        <div style={{marginTop:18}}>
-          <button
-            onClick={handleDraw}
-            disabled={isDrawing || names.length === 0}
-            style={{ fontWeight: "bold", fontSize: "1.1em" }}
-          >
-            Draw!
-          </button>
-          <button
-            onClick={handleRedraw}
-            disabled={isDrawing || !winner || names.length === 0}
-            style={{
-              marginLeft: 10,
-              opacity: 0.6,
-              fontSize: "0.9em",
-              padding: "0.2em 1em",
-            }}
-            title="Redraw (omit last winner)"
-          >
-            ↻
-          </button>
-        </div>
-      </div>
+      )}
 
       <div className="rnd-display">
         {banner && (
@@ -251,17 +227,31 @@ export default function RandomNameDrawApp() {
             <div className="rnd-banner">{banner}</div>
         )}
         {isDrawing ? (
-          <div className="rnd-countdown">Drawing in... {timer}</div>
+          <div className="rnd-countdown">
+            {randomName ? randomName : "Drawing..."}
+          </div>
         ) : winner ? (
           <div className="rnd-winner">
-            <span>🎉</span>
             <span>{winner}</span>
-            <span>🎉</span>
+            <span> 🎉</span>
           </div>
+        ) : isReady ? (
+          <div className="rnd-wait">Press Draw to start!</div>
         ) : (
-          <div className="rnd-wait">Click Draw!</div>
+          <div className="rnd-wait">Press Ready to start.</div>
         )}
       </div>
+
+      {isReady && (
+        <button
+          className="rnd-draw-fab"
+          disabled={isDrawing || names.length === 0}
+          onClick={handleDrawOrRedraw}
+          title={winner ? "Redraw (omit last winner)" : "Draw"}
+        >
+          {winner ? "Redraw" : "Draw"}
+        </button>
+      )}
 
       <div className="rnd-winners">
         <h4>Winners</h4>
