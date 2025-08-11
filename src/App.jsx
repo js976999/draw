@@ -1,7 +1,8 @@
-import React from "react";
-import RandomNameDrawApp from "./RandomNameDrawApp";
-import "./RandomNameDrawApp.css";
-
 export default function App() {
-  return <RandomNameDrawApp />;
+  return (
+    <div>
+      <h1>Deployment Test: {Date.now()}</h1>
+      <RandomNameDrawApp />
+    </div>
+  );
 }
