@@ -1,10 +1,20 @@
 {
   "files": {
-    "main.js": "/draw/static/js/main.44ae03f3.js",
+    "main.js": "/draw/static/js/main.d895c835.js",
+    "static/media/20beaches_background.png": "/draw/static/media/20beaches_background.0490dfd622eb8115b8a8.png",
+    "static/media/chucky_banner.png": "/draw/static/media/chucky_banner.2d1f5b545928d2925f7a.png",
+    "static/media/sss_banner.png": "/draw/static/media/sss_banner.09c50e96931d07073dc2.png",
+    "static/media/raceone_banner.png": "/draw/static/media/raceone_banner.0a2eb31b118e2a04648d.png",
+    "static/media/raceone_background.png": "/draw/static/media/raceone_background.abb45ad7cfc093e0bc3f.png",
+    "static/media/sss_background.png": "/draw/static/media/sss_background.719641d16303775a9394.png",
+    "static/media/warw_banner.png": "/draw/static/media/warw_banner.ce8f158798084c91dfa8.png",
+    "static/media/chucky_background.png": "/draw/static/media/chucky_background.7a5d64da67718180b9ed.png",
+    "static/media/warw_background.png": "/draw/static/media/warw_background.ec3dd534ab0b6c871e15.png",
+    "static/media/20beaches_banner.png": "/draw/static/media/20beaches_banner.1b4efa0621bd9891a1b2.png",
     "index.html": "/draw/index.html",
-    "main.44ae03f3.js.map": "/draw/static/js/main.44ae03f3.js.map"
+    "main.d895c835.js.map": "/draw/static/js/main.d895c835.js.map"
   },
   "entrypoints": [
-    "static/js/main.44ae03f3.js"
+    "static/js/main.d895c835.js"
   ]
 }
