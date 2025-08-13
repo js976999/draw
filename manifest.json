@@ -1,0 +1,8 @@
+{
+  "name": "Draw App",
+  "short_name": "Draw",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "description": "Random name draw app"
+}
