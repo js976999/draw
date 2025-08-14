@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/draw/static/js/main.2a3f96b2.js",
+    "main.js": "/draw/static/js/main.5fd48cce.js",
     "static/media/warw_background.png": "/draw/static/media/warw_background.f0e65e5fa09a97aa71e8.png",
     "static/media/sss_background.png": "/draw/static/media/sss_background.cbf33f9a937c0c1ccf0e.png",
     "static/media/raceone_background.png": "/draw/static/media/raceone_background.3219e9f4f7786e8281f5.png",
@@ -12,9 +12,9 @@
     "static/media/warw_banner.png": "/draw/static/media/warw_banner.ce8f158798084c91dfa8.png",
     "static/media/20beaches_banner.png": "/draw/static/media/20beaches_banner.1b4efa0621bd9891a1b2.png",
     "index.html": "/draw/index.html",
-    "main.2a3f96b2.js.map": "/draw/static/js/main.2a3f96b2.js.map"
+    "main.5fd48cce.js.map": "/draw/static/js/main.5fd48cce.js.map"
   },
   "entrypoints": [
-    "static/js/main.2a3f96b2.js"
+    "static/js/main.5fd48cce.js"
   ]
 }
