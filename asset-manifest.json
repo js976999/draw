@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/draw/static/js/main.828e11b7.js",
+    "main.js": "/draw/static/js/main.37122824.js",
     "static/media/chucky_banner.png": "/draw/static/media/chucky_banner.2d1f5b545928d2925f7a.png",
     "static/media/sss_banner.png": "/draw/static/media/sss_banner.09c50e96931d07073dc2.png",
     "static/media/raceone_banner.png": "/draw/static/media/raceone_banner.0a2eb31b118e2a04648d.png",
@@ -12,9 +12,9 @@
     "static/media/sss_background.png": "/draw/static/media/sss_background.8e9fb8890cc0c56366a5.png",
     "static/media/20beaches_background.png": "/draw/static/media/20beaches_background.686357b3640e20972c4c.png",
     "index.html": "/draw/index.html",
-    "main.828e11b7.js.map": "/draw/static/js/main.828e11b7.js.map"
+    "main.37122824.js.map": "/draw/static/js/main.37122824.js.map"
   },
   "entrypoints": [
-    "static/js/main.828e11b7.js"
+    "static/js/main.37122824.js"
   ]
 }
