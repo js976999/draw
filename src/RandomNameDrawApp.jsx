@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import CountdownDial from "./CountdownDial";
 
 // Update these arrays if you add/remove images in public/backgrounds or public/banner
 const backgrounds = [
@@ -41,6 +42,7 @@ export default function RandomNameDrawApp() {
   const [banner, setBanner] = useState(banners[0].value);
   const [winner, setWinner] = useState(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [isCountingDown, setIsCountingDown] = useState(false);
   const [timer, setTimer] = useState(countdown);
   const [winners, setWinners] = useState(readWinners());
   const [isReady, setIsReady] = useState(false); // NEW STATE
@@ -67,31 +69,27 @@ export default function RandomNameDrawApp() {
     setIsReady(true);
     setWinner(null);
     setRandomName("");
+    setIsCountingDown(false);
   }
 
   function handleDrawOrRedraw() {
     if (names.length === 0) return;
     setIsDrawing(true);
+    setIsCountingDown(true);
     setWinner(null);
     setRandomName("");
-    // Animation: show random names for 2 seconds, then pick winner
-    let ticks = 0;
-    const maxTicks = 25;
-    const interval = setInterval(() => {
-      setRandomName(names[Math.floor(Math.random() * names.length)]);
-      ticks++;
-      if (ticks > maxTicks) {
-        clearInterval(interval);
-        const available = names.filter((n) => !winners.includes(n));
-        let pick = available.length
-          ? available[Math.floor(Math.random() * available.length)]
-          : names[Math.floor(Math.random() * names.length)];
-        setWinner(pick);
-        setWinners((w) => (pick && !w.includes(pick) ? [...w, pick] : w));
-        setIsDrawing(false);
-        setRandomName("");
-      }
-    }, 60);
+  }
+
+  function handleCountdownComplete() {
+    setIsCountingDown(false);
+    // Immediately pick and show the winner
+    const available = names.filter((n) => !winners.includes(n));
+    let pick = available.length
+      ? available[Math.floor(Math.random() * available.length)]
+      : names[Math.floor(Math.random() * names.length)];
+    setWinner(pick);
+    setWinners((w) => (pick && !w.includes(pick) ? [...w, pick] : w));
+    setIsDrawing(false);
   }
 
   function handleClearWinners() {
@@ -226,7 +224,9 @@ export default function RandomNameDrawApp() {
             :
             <div className="rnd-banner">{banner}</div>
         )}
-        {isDrawing ? (
+        {isCountingDown ? (
+          <CountdownDial seconds={countdown} onComplete={handleCountdownComplete} />
+        ) : isDrawing ? (
           <div className="rnd-countdown">
             {randomName ? randomName : "Drawing..."}
           </div>
